@@ -2,8 +2,8 @@
 
 internal class Program
 {
-    private static void Main(string[] args)
+    private static async Task Main(string[] args)
     {
-        TelegramBotService.GetToken();
+        await TelegramBotService.Run();
     }
-}
+};
