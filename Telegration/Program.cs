@@ -2,8 +2,6 @@
 
 internal class Program
 {
-    private static async Task Main(string[] args)
-    {
-        await TelegramBotService.Run();
-    }
+    [Obsolete]
+    private static async Task Main(string[] args) => await TelegramBotService.Run();
 };
