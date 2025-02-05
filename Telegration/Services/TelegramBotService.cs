@@ -73,6 +73,7 @@ namespace Telegration.Services
         )
         {
             using var driver = new ChromeDriver();
+            driver.Navigate().GoToUrl("https://www.google.com.br");
             await bot.SendMessage(
                 chatId: chatId,
                 text: "Chrome opened with Selenium",
