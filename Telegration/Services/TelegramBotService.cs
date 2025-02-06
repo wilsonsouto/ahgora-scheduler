@@ -51,9 +51,9 @@ namespace Telegration.Services
 
             Console.WriteLine($"Message received: {messageText}");
 
-            if (messageText.Contains("recordtime", StringComparison.OrdinalIgnoreCase))
+            if (messageText.Contains("registerpoint", StringComparison.OrdinalIgnoreCase))
             {
-                await RecordTimeAsync(bot, message.Chat.Id, cancellationToken);
+                await RegisterPointAsync(bot, message.Chat.Id, cancellationToken);
             }
         }
 
@@ -67,7 +67,7 @@ namespace Telegration.Services
             return Task.CompletedTask;
         }
 
-        private static async Task RecordTimeAsync(
+        private static async Task RegisterPointAsync(
             ITelegramBotClient bot,
             long chatId,
             CancellationToken cancellationToken
@@ -98,7 +98,7 @@ namespace Telegration.Services
 
             await bot.SendMessage(
                 chatId: chatId,
-                text: "Your time has been recorded!",
+                text: "Your point has been registered!",
                 cancellationToken: cancellationToken
             );
         }
