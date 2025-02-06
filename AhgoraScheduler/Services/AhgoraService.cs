@@ -21,13 +21,13 @@ public class AhgoraService
         // Wait 10 seconds before search for an element
         driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
 
-        IWebElement rootButton = driver.FindElement(By.XPath("//button[@type='button' and contains(@class, 'MuiButton-root')]"));
+        var rootButton = driver.FindElement(By.XPath("//button[@type='button' and contains(@class, 'MuiButton-root')]"));
         rootButton.Click();
 
-        IWebElement registrationField = driver.FindElement(By.Id("outlined-basic-account"));
+        var registrationField = driver.FindElement(By.Id("outlined-basic-account"));
         registrationField.SendKeys(env.UserRegistration);
 
-        IWebElement passwordField = driver.FindElement(By.Id("outlined-basic-password"));
+        var passwordField = driver.FindElement(By.Id("outlined-basic-password"));
         passwordField.SendKeys(env.UserPassword);
 
         // IWebElement advanceButton = driver.FindElement(By.XPath("//button[.//p[text()='Advance']]"));
