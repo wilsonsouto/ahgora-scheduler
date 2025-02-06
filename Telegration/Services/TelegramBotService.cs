@@ -1,124 +1,65 @@
 using DotNetEnv;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using Telegram.Bot;
-using Telegram.Bot.Polling;
-using Telegram.Bot.Types;
+using Telegration.Models;
 
 namespace Telegration.Services
 {
     public class TelegramBotService
     {
-        private static int lastUpdateId = 0;
-
-        [Obsolete]
-        public static async Task Run()
+        public static void Run()
         {
-            var token = GetToken();
-
-            if (string.IsNullOrEmpty(token))
-                return;
-
-            var bot = new TelegramBotClient(token);
-            var me = await bot.GetMe();
-            var cts = new CancellationTokenSource();
-
-            var receiverOptions = new ReceiverOptions { AllowedUpdates = [] };
-
-            bot.StartReceiving(HandleUpdateAsync, HandleErrorAsync, receiverOptions, cts.Token);
-
             Console.Clear();
-            Console.WriteLine($"Bot '{me.FirstName}' it is running...");
+            var env = GetCredencials();
 
-            await Task.Delay(-1);
-        }
-
-        [Obsolete]
-        private static async Task HandleUpdateAsync(
-            ITelegramBotClient bot,
-            Update update,
-            CancellationToken cancellationToken
-        )
-        {
-            if (update.Message is not { } message || message.Text is not { } messageText)
+            if (env == null)
                 return;
-
-            // If the update has already been processed, ignore it
-            if (update.Id <= lastUpdateId)
-                return;
-
-            lastUpdateId = update.Id; // Update the last processed update
-
-            Console.WriteLine($"Message received: {messageText}");
-
-            if (messageText.Contains("registerpoint", StringComparison.OrdinalIgnoreCase))
-            {
-                await RegisterPointAsync(bot, message.Chat.Id, cancellationToken);
-            }
-        }
-
-        private static Task HandleErrorAsync(
-            ITelegramBotClient botClient,
-            Exception exception,
-            CancellationToken cancellationToken
-        )
-        {
-            Console.WriteLine($"Error: {exception.Message}");
-            return Task.CompletedTask;
-        }
-
-        private static async Task RegisterPointAsync(
-            ITelegramBotClient bot,
-            long chatId,
-            CancellationToken cancellationToken
-        )
-        {
-            Env.Load();
-            var siteUrl = Environment.GetEnvironmentVariable("SITE_URL");
-            var registration = Environment.GetEnvironmentVariable("USER_REGISTRATION");
-            var password = Environment.GetEnvironmentVariable("USER_PASSWORD");
 
             using var driver = new ChromeDriver();
-            driver.Navigate().GoToUrl(siteUrl);
+            driver.Navigate().GoToUrl(env.SiteUrl);
 
-            IWebElement rootButton = driver.FindElement(By.Id("root"));
+            // Wait 10 seconds before search for an element
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+
+            IWebElement rootButton = driver.FindElement(By.XPath("//button[@type='button' and contains(@class, 'MuiButton-root')]"));
             rootButton.Click();
 
             IWebElement registrationField = driver.FindElement(By.Id("outlined-basic-account"));
-            registrationField.SendKeys(registration);
+            registrationField.SendKeys(env.UserRegistration);
 
             IWebElement passwordField = driver.FindElement(By.Id("outlined-basic-password"));
-            passwordField.SendKeys(password);
+            passwordField.SendKeys(env.UserPassword);
 
             IWebElement advanceButton = driver.FindElement(By.XPath("//button[.//p[text()='Advance']]"));
             advanceButton.Click();
 
-            IWebElement clockInButton = driver.FindElement(By.XPath("//button[.//p[text()='Clocking in']]"));
-            clockInButton.Click();
-
-            await bot.SendMessage(
-                chatId: chatId,
-                text: "Your point has been registered!",
-                cancellationToken: cancellationToken
-            );
+            Console.WriteLine("Your point has been registered!");
         }
 
-        private static string GetToken()
+        private static AhgoraModel? GetCredencials()
         {
             try
             {
                 Env.Load();
-                var token = Environment.GetEnvironmentVariable("TELEGRAM_BOT_TOKEN");
+                var siteUrl = Environment.GetEnvironmentVariable("SITE_URL");
+                var userRegistration = Environment.GetEnvironmentVariable("USER_REGISTRATION");
+                var userPassword = Environment.GetEnvironmentVariable("USER_PASSWORD");
 
-                if (!string.IsNullOrEmpty(token))
-                    return token;
+                if (string.IsNullOrEmpty(siteUrl))
+                    throw new Exception("Error: The 'SITE_URL' is missing or empty! Please check your .env file.");
 
-                throw new Exception("Token does not exist! Verify your .env file.");
+                if (string.IsNullOrEmpty(userRegistration))
+                    throw new Exception("Error: The 'USER_REGISTRATION' is missing or empty! Please check your .env file.");
+
+                if (string.IsNullOrEmpty(userPassword))
+                    throw new Exception("Error: The 'USER_PASSWORD' is missing or empty! Please check your .env file.");
+
+                return new AhgoraModel(siteUrl, userRegistration, userPassword);
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                return string.Empty;
+                return null;
             }
         }
     }

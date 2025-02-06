@@ -12,6 +12,5 @@
     </None>
     <PackageReference Include="Selenium.WebDriver" Version="4.28.0" />
     <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="132.0.6834.15900" />
-    <PackageReference Include="Telegram.Bot" Version="22.3.0" />
   </ItemGroup>
 </Project>
