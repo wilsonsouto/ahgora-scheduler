@@ -1,4 +1,5 @@
 using DotNetEnv;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using Telegram.Bot;
 using Telegram.Bot.Polling;
@@ -50,9 +51,9 @@ namespace Telegration.Services
 
             Console.WriteLine($"Message received: {messageText}");
 
-            if (messageText.Contains("openchrome", StringComparison.OrdinalIgnoreCase))
+            if (messageText.Contains("recordtime", StringComparison.OrdinalIgnoreCase))
             {
-                await OpenChrome(bot, message.Chat.Id, cancellationToken);
+                await RecordTimeAsync(bot, message.Chat.Id, cancellationToken);
             }
         }
 
@@ -66,17 +67,44 @@ namespace Telegration.Services
             return Task.CompletedTask;
         }
 
-        private static async Task OpenChrome(
+        private static async Task RecordTimeAsync(
             ITelegramBotClient bot,
             long chatId,
             CancellationToken cancellationToken
         )
         {
+            Env.Load();
+            var siteUrl = Environment.GetEnvironmentVariable("SITE_URL");
+            var username = Environment.GetEnvironmentVariable("USER_ACCOUNT");
+            var password = Environment.GetEnvironmentVariable("USER_PASSWORD");
+
             using var driver = new ChromeDriver();
-            driver.Navigate().GoToUrl("https://www.google.com.br");
+            driver.Navigate().GoToUrl(siteUrl);
+
             await bot.SendMessage(
                 chatId: chatId,
                 text: "Chrome opened with Selenium",
+                cancellationToken: cancellationToken
+            );
+
+            IWebElement rootButton = driver.FindElement(By.Id("root"));
+            rootButton.Click();
+
+            IWebElement usernameField = driver.FindElement(By.Id("outlined-basic-account"));
+            usernameField.SendKeys(username);
+
+            IWebElement passwordField = driver.FindElement(By.Id("outlined-basic-password"));
+            passwordField.SendKeys(password);
+
+            IWebElement advanceButton = driver.FindElement(By.XPath("//button[.//p[text()='Advance']]"));
+            advanceButton.Click();
+
+            IWebElement clockInButton = driver.FindElement(By.XPath("//button[.//p[text()='Clocking in']]"));
+            clockInButton.Click();
+
+            await bot.SendMessage(
+                chatId: chatId,
+                text: "Your time has been recorded!",
                 cancellationToken: cancellationToken
             );
         }
