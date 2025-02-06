@@ -81,12 +81,6 @@ namespace Telegration.Services
             using var driver = new ChromeDriver();
             driver.Navigate().GoToUrl(siteUrl);
 
-            await bot.SendMessage(
-                chatId: chatId,
-                text: "Chrome opened with Selenium",
-                cancellationToken: cancellationToken
-            );
-
             IWebElement rootButton = driver.FindElement(By.Id("root"));
             rootButton.Click();
 
