@@ -5,7 +5,7 @@ using OpenQA.Selenium.Chrome;
 
 namespace AhgoraScheduler.Services;
 
-public class AhgoraService
+public static class AhgoraService
 {
     public static void Run()
     {

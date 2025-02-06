@@ -2,7 +2,7 @@
 
 namespace AhgoraScheduler;
 
-internal class Program
+public static class Program
 {
-    internal static void Main(string[] args) => AhgoraService.Run();
+    public static void Main(string[] args) => AhgoraService.Run();
 };
