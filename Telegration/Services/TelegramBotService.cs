@@ -75,7 +75,7 @@ namespace Telegration.Services
         {
             Env.Load();
             var siteUrl = Environment.GetEnvironmentVariable("SITE_URL");
-            var registration = Environment.GetEnvironmentVariable("USER_ACCOUNT");
+            var registration = Environment.GetEnvironmentVariable("USER_REGISTRATION");
             var password = Environment.GetEnvironmentVariable("USER_PASSWORD");
 
             using var driver = new ChromeDriver();
