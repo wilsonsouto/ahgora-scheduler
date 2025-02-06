@@ -75,7 +75,7 @@ namespace Telegration.Services
         {
             Env.Load();
             var siteUrl = Environment.GetEnvironmentVariable("SITE_URL");
-            var username = Environment.GetEnvironmentVariable("USER_ACCOUNT");
+            var registration = Environment.GetEnvironmentVariable("USER_ACCOUNT");
             var password = Environment.GetEnvironmentVariable("USER_PASSWORD");
 
             using var driver = new ChromeDriver();
@@ -84,8 +84,8 @@ namespace Telegration.Services
             IWebElement rootButton = driver.FindElement(By.Id("root"));
             rootButton.Click();
 
-            IWebElement usernameField = driver.FindElement(By.Id("outlined-basic-account"));
-            usernameField.SendKeys(username);
+            IWebElement registrationField = driver.FindElement(By.Id("outlined-basic-account"));
+            registrationField.SendKeys(registration);
 
             IWebElement passwordField = driver.FindElement(By.Id("outlined-basic-password"));
             passwordField.SendKeys(password);
