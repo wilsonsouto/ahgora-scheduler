@@ -1,4 +1,4 @@
-namespace Telegration.Models
+namespace AhgoraScheduler.Models
 {
     public class AhgoraModel(string siteUrl, string userRegistration, string userPassword)
     {

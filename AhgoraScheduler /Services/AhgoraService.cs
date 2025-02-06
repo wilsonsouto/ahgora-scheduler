@@ -1,11 +1,11 @@
+using AhgoraScheduler.Models;
 using DotNetEnv;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using Telegration.Models;
 
-namespace Telegration.Services
+namespace AhgoraScheduler.Services
 {
-    public class TelegramBotService
+    public class AhgoraService
     {
         public static void Run()
         {
