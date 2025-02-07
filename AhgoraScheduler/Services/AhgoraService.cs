@@ -30,8 +30,11 @@ public static class AhgoraService
         var passwordField = driver.FindElement(By.Id("outlined-basic-password"));
         passwordField.SendKeys(env.UserPassword);
 
-        var advanceButton = driver.FindElement(By.XPath("//button[.//p[text()='Advance']]"));
+        var advanceButton = driver.FindElement(By.XPath("//button[@type='button' and contains(@class, 'MuiButton-text')]"));
         advanceButton.Click();
+
+        var registerButton = driver.FindElement(By.XPath("//button[@type='button' and contains(@class, 'MuiButton-text')]"));
+        registerButton.Click();
 
         Console.WriteLine("Your point has been registered!");
     }
