@@ -64,65 +64,50 @@ Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) an
 
 ### Step 1: Set up the project
 
-1. Clone this project:
-
 ```bash
-git clone https://github.com/wilsonsouto/ahgora-scheduler
-```
+# Clone this project
+$ git clone https://github.com/wilsonsouto/ahgora-scheduler
 
-2. Access the project folder:
+# Access the project folder
+$ cd ahgora-scheduler/AhgoraScheduler
 
-```bash
-cd ahgora-scheduler/AhgoraScheduler
-```
+# Create a .env file
+$ touch .env
 
-3. Create a .env file:
-
-```bash
-touch .env
-```
-
-4. Add the following content to .env:
-
-```ini
+# Add the following content to .env
 SITE_URL="your-ahgora-website"
 USER_REGISTRATION="your-registration"
 USER_PASSWORD="your-password"
-```
 
-5. Replace `your-ahgora-website`, `your-registration`, and `your-password` with your credentials.
+# Replace your-ahgora-website, your-registration, and your-password with your credentials
+```
 
 ### Step 2: Set up a schedule task
 
 **Windows:**
 
-1. Open Task Scheduler.
-2. Create a new task and give it a meaningful name.
-3. Under the Actions tab, select Start a Program.
-4. In the Program/script field, browse to `AhgoraScheduler/bin/Release/net8.0/AhgoraScheduler.exe`.
-5. Configure the Trigger (time or frequency) according to your scheduling needs.
-6. Save the task and ensure it runs correctly.
+```ini
+# Open Task Scheduler
+# Create a new task and give it a meaningful name
+# Under the Actions tab, select Start a Program
+# In the Program/script field, browse to ../bin/Release/net8.0/AhgoraScheduler.exe
+# Configure the Trigger (time or frequency) according to your scheduling needs
+# Save the task and ensure it runs correctly
+```
 
 **Linux/macOS:**
 
-1. Open a terminal and run:
-
 ```bash
-crontab -e
-```
+# Open a terminal and run
+$ crontab -e
 
-2. Add a new line to schedule the script (e.g., run every day at 8 AM):
+# Add a new line to schedule the script (e.g., run every day at 8 AM)
+$ 0 8 * * * /path/to/AhgoraScheduler/bin/Release/net8.0/AhgoraScheduler
 
-```bash
-0 8 * * * /path/to/AhgoraScheduler/bin/Release/net8.0/AhgoraScheduler
-```
+# Save the file and exit the editor
 
-3. Save the file and exit the editor.
-
-4. Verify the scheduled task:
-
-```bash
-crontab -l
+# Verify the scheduled task
+$ crontab -l
 ```
 
 ## :memo: License
