@@ -76,7 +76,7 @@ USER_PASSWORD="your-password"
 # Open Task Scheduler
 # Create a new task and give it a meaningful name
 # Under the Actions tab, select Start a Program
-# In the Program/script field, browse to AhgoraScheduler/bin/Release/net8.0/AhgoraScheduler.exe
+# In Program/script, click Browse and select AhgoraScheduler.exe from bin/Release/net8.0
 # Configure the Trigger (time or frequency) according to your scheduling needs
 # Save the task and ensure it runs correctly
 ```
