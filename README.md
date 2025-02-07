@@ -21,7 +21,7 @@
 <!-- Status -->
 
 <!-- <h4 align="center">
-      🚧  Telegration 🚀 Under construction...  🚧
+      🚧  Ahgora Scheduler 🚀 Under construction...  🚧
 </h4>
 
 <hr> -->
@@ -44,9 +44,9 @@ This script was created to automate time tracking for work, addressing the commo
 
 ## :sparkles: Features
 
-:heavy_check_mark: **Automated Time Tracking**: Register work hours with a single execution;\
-:heavy_check_mark: **Scheduled Operations**: Runs at specified times using task schedulers, eliminating manual input;\
-:heavy_check_mark: **Reliable Accuracy**: Ensures precise time tracking, reducing human errors;
+:heavy_check_mark: **Automated Time Tracking**: Register work hours with a single execution.\
+:heavy_check_mark: **Scheduled Operations**: Runs at specified times using task schedulers, eliminating manual input.\
+:heavy_check_mark: **Reliable Accuracy**: Ensures precise time tracking, reducing human errors.
 
 ## :rocket: Technologies
 
@@ -96,16 +96,16 @@ USER_PASSWORD="your-password"
 
 **Windows:**
 
-1. Open Task Scheduler
-2. Create a new task and give it a meaningful name
-3. Under the Actions tab, select Start a Program
-4. In the Program/script field, browse to `AhgoraScheduler/bin/Release/net8.0/AhgoraScheduler.exe`
-5. Configure the Trigger (time or frequency) according to your scheduling needs
-6. Save the task and ensure it runs correctly
+1. Open Task Scheduler.
+2. Create a new task and give it a meaningful name.
+3. Under the Actions tab, select Start a Program.
+4. In the Program/script field, browse to `AhgoraScheduler/bin/Release/net8.0/AhgoraScheduler.exe`.
+5. Configure the Trigger (time or frequency) according to your scheduling needs.
+6. Save the task and ensure it runs correctly.
 
 **Linux/macOS:**
 
-1. Open a terminal and run
+1. Open a terminal and run:
 
 ```bash
 crontab -e
@@ -129,7 +129,7 @@ crontab -l
 
 This project is under license from MIT. For more details, see the [LICENSE](LICENSE) file.
 
-Made with :heart: by <a href="https://github.com/wilsonsouto" target="_blank">wilsonsouto</a>
+Made with :heart: by [wilsonsouto](https://github.com/wilsonsouto)
 
 &#xa0;
 
