@@ -10,21 +10,7 @@
   <img alt="Repository size" src="https://img.shields.io/github/repo-size/wilsonsouto/ahgora-scheduler?color=56BEB8">
 
   <img alt="License" src="https://img.shields.io/github/license/wilsonsouto/ahgora-scheduler?color=56BEB8">
-
-  <!-- <img alt="Github issues" src="https://img.shields.io/github/issues/wilsonsouto/file-organizer?color=56BEB8" /> -->
-
-  <!-- <img alt="Github forks" src="https://img.shields.io/github/forks/wilsonsouto/file-organizer?color=56BEB8" /> -->
-
-  <!-- <img alt="Github stars" src="https://img.shields.io/github/stars/wilsonsouto/file-organizer?color=56BEB8" /> -->
 </p>
-
-<!-- Status -->
-
-<!-- <h4 align="center">
-      🚧  Ahgora Scheduler 🚀 Under construction...  🚧
-</h4>
-
-<hr> -->
 
 <p align="center">
   <a href="#dart-about">About</a> &#xa0; | &#xa0; 
@@ -90,7 +76,7 @@ USER_PASSWORD="your-password"
 # Open Task Scheduler
 # Create a new task and give it a meaningful name
 # Under the Actions tab, select Start a Program
-# In the Program/script field, browse to ../bin/Release/net8.0/AhgoraScheduler.exe
+# In the Program/script field, browse to AhgoraScheduler/bin/Release/net8.0/AhgoraScheduler.exe
 # Configure the Trigger (time or frequency) according to your scheduling needs
 # Save the task and ensure it runs correctly
 ```
