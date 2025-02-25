@@ -44,7 +44,7 @@ The following tools were used in this project:
 
 ## :white_check_mark: Requirements
 
-Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) and [.NET SDK](https://dotnet.microsoft.com/en-us/download) installed.
+Before starting :checkered_flag:, you need to have [Git](https://git-scm.com), [.NET SDK](https://dotnet.microsoft.com/en-us/download) and [Chrome](https://www.google.com/intl/en/chrome/) installed.
 
 ## :checkered_flag: Starting
 
