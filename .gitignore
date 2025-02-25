@@ -397,5 +397,3 @@ FodyWeavers.xsd
 *.sln.iml
 *.idea
 
-# Environment
-*.env
